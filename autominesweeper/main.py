@@ -11,5 +11,5 @@ if __name__ == '__main__':
     options.add_argument('--disable-dev-shm-usage')
 
     browser = webdriver.Remote('http://selenium_chrome:4444/wd/hub', options=options)
-    solver = MinesweeperSolver(16, 30, 99, browser)
+    solver = MinesweeperSolver(16, 16, 40, browser)
     solver.start_playing(game_url)

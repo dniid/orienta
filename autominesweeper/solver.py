@@ -106,4 +106,10 @@ class MinesweeperSolver:
     def start_playing(self, game_url):
         self.driver.get(game_url)
         self.driver.implicitly_wait(5)
+
+        self.driver.find_element(By.ID, 'options-link').click()
+        self.driver.find_element(By.ID, 'intermediate').click()
+        self.driver.find_element(By.XPATH, '/html/body/table/tbody/tr/td/div/div[2]/div[1]/form[1]/table/tbody/tr[7]/td[1]/input').click()
+
+        self.driver.implicitly_wait(5)
         self.mouse_feed(0)
