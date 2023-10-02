@@ -1,0 +1,33 @@
+version: "3.7"
+
+services:
+  # auto2048:
+  #   build:
+  #     context: ./auto2048
+  #   environment:
+  #     LOOP: True
+  #     GAME_URL: https://play2048.co
+  #   depends_on:
+  #     selenium_chrome:
+  #       condition: service_healthy
+
+  autominesweeper:
+    build:
+      context: ./autominesweeper
+    environment:
+      GAME_URL: http://www.minesweeperonline.com
+    depends_on:
+      selenium_chrome:
+        condition: service_healthy
+
+  selenium_chrome:
+    image: selenium/standalone-chrome
+    ports:
+      - 4444:4444
+      - 7900:7900
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4444/wd/hub/status"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
